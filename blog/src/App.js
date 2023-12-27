@@ -8,22 +8,22 @@ import { useState } from 'react';
 function App() {
 
   let [글제목, 글제목변경] = useState(['남자코트 추천', '강남 우동맛집', '파이썬 독학']);
-  let [따봉, 따봉변경] = useState(0);
+  let [따봉, 따봉변경] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
 
   return (
     <div className="App">
       <div className="black-nav">
         <h4> 블로그 </h4>
-      </div> 
+      </div>
 
-      <button onClick={ ()=> {
+      <button onClick={() => {
         let copy = [...글제목];
         copy[0] = '여자 코트 추천'
         글제목변경(copy)
       }}>글수정</button>
 
-      <button onClick={ ()=> {
+      <button onClick={() => {
         let copy = [...글제목];
         copy.sort()
         글제목변경(copy)
@@ -43,17 +43,21 @@ function App() {
       </div>  */}
 
       {
-        글제목.map(function(title, index){
+        글제목.map(function (title, index) {
           return (
             <div className="list">
-            <h4>{ title + index }</h4>
-            <p>2월 17일 발행</p>
-          </div>
+              <h4>{title} <span onClick={() => {
+                let copy = [...따봉];
+                copy[index] = 따봉[index] + 1
+                따봉변경(copy)
+              }}>👍🏻</span> { 따봉[index] }</h4>
+              <p>2월 17일 발행</p>
+            </div>
           )
         })
       }
 
-      { modal == true ? <Modal/> : null }
+      {modal == true ? <Modal /> : null}
 
     </div>
   );
@@ -61,11 +65,11 @@ function App() {
 
 function Modal() {
   return (
-      <div className="modal">
-        <h4>제목</h4>
-        <p>날짜</p>
-        <p>상세내용</p>
-      </div>
+    <div className="modal">
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
   )
 }
 
