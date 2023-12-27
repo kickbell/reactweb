@@ -29,7 +29,7 @@ function App() {
         글제목변경(copy)
       }}>가나다순 정렬</button>
 
-      <div className="list">
+      {/* <div className="list">
         <h4>{ 글제목[0] } <span onClick={ ()=>{ 따봉변경(따봉+1) } }>👍🏻</span> { 따봉 }</h4>
         <p>2월 17일 발행2</p>
       </div>
@@ -40,7 +40,18 @@ function App() {
       <div className="list">
         <h4 onClick = { () => { setModal(!modal) }}>{ 글제목[2] }</h4>
         <p>2월 17일 발행</p>
-      </div>
+      </div>  */}
+
+      {
+        글제목.map(function(title, index){
+          return (
+            <div className="list">
+            <h4>{ title + index }</h4>
+            <p>2월 17일 발행</p>
+          </div>
+          )
+        })
+      }
 
       { modal == true ? <Modal/> : null }
 
