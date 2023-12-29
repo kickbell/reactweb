@@ -60,7 +60,7 @@ function App() {
         })
       }
 
-      {modal == true ? <Modal backgroundColor={'yellow'} 글제목={글제목}/> : null}
+      {modal == true ? <Modal 글제목변경={글제목변경} color={'yellow'} 글제목={글제목}/> : null}
 
     </div>
   );
@@ -68,10 +68,15 @@ function App() {
 
 function Modal(props) {
   return (
-    <div className="modal" style={{background : props.backgroundColor}}>
+    <div className="modal" style={{background : props.color}}>
       <h4>{props.글제목[0]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      <button onClick={() => {
+        let copy = [...props.글제목];
+        copy[0] = '글제목바뀜'
+        props.글제목변경(copy)
+      }}>글수정</button>
     </div>
   )
 }
