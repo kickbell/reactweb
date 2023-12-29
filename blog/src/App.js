@@ -82,11 +82,11 @@ function App() {
           글제목변경(copy)
 
           let 따봉copy = [...따봉];
-          따봉copy.push(0);
+          따봉copy.unshift(0);
           따봉변경(따봉copy);
   
           let 날짜copy = [...날짜];
-          날짜copy.push(new Date().toLocaleDateString());
+          날짜copy.unshift(new Date().toLocaleDateString());
           날짜변경(날짜copy);
       }}>글발행
       </button>
