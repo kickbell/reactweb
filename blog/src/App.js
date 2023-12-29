@@ -11,6 +11,7 @@ function App() {
   let [따봉, 따봉변경] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   let [선택한인덱스, 선택한인덱스변경] = useState(0);
+  let [입력값, 입력값변경] = useState('');
 
   return (
     <div className="App">
@@ -66,6 +67,14 @@ function App() {
       }
 
       {modal == true ? <Modal 선택한인덱스={선택한인덱스} 글제목변경={글제목변경} color={'yellow'} 글제목={글제목}/> : null}
+
+      <input type="text" onChange={(e)=>{입력값변경(e.target.value)}}/>
+      <button onClick={()=>{
+          let copy = [...글제목];
+          copy.push(입력값)
+          글제목변경(copy)
+      }}>글발행
+      </button>
 
     </div>
   );
