@@ -74,9 +74,11 @@ function App() {
       {modal == true ? <Modal 선택한인덱스={선택한인덱스} 글제목변경={글제목변경} color={'yellow'} 글제목={글제목}/> : null}
 
       <input type="text" onChange={(e)=>{입력값변경(e.target.value)}}/>
-      <button onClick={()=>{
+      <button onClick={(e)=>{
+          if (입력값.trim() === '') return; // 가드문을 사용하여 빈 입력 처리
+
           let copy = [...글제목];
-          copy.push(입력값)
+          copy.unshift(입력값)
           글제목변경(copy)
       }}>글발행
       </button>
