@@ -54,7 +54,8 @@ function App() {
                 선택한인덱스변경(index)
                 }}>
                 {title}
-                <span onClick={() => {
+                <span onClick={(e) => {
+                  e.stopPropagation();
                   let copy = [...따봉];
                   copy[index] = 따봉[index] + 1
                   따봉변경(copy)}}>👍🏻
@@ -77,6 +78,7 @@ function App() {
       <input type="text" onChange={(e)=>{입력값변경(e.target.value)}}/>
       <button onClick={(e)=>{
           if (입력값.trim() === '') return; // 가드문을 사용하여 빈 입력 처리
+
           let copy = [...글제목];
           copy.unshift(입력값)
           글제목변경(copy)
