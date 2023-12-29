@@ -45,28 +45,31 @@ function App() {
       {
         글제목.map(function (title, index) {
           return (
-            <div className="list">
-              <h4>{title} <span onClick={() => {
-                let copy = [...따봉];
-                copy[index] = 따봉[index] + 1
-                따봉변경(copy)
-              }}>👍🏻</span> { 따봉[index] }</h4>
+            <div className="list" key={index}>
+              <h4 onClick={() => { setModal(!modal) }}>
+                {title}
+                <span onClick={() => {
+                  let copy = [...따봉];
+                  copy[index] = 따봉[index] + 1
+                  따봉변경(copy)}}>👍🏻
+                </span>
+                {따봉[index]}</h4>
               <p>2월 17일 발행</p>
             </div>
           )
         })
       }
 
-      {modal == true ? <Modal /> : null}
+      {modal == true ? <Modal backgroundColor={'yellow'} 글제목={글제목}/> : null}
 
     </div>
   );
 }
 
-function Modal() {
+function Modal(props) {
   return (
-    <div className="modal">
-      <h4>제목</h4>
+    <div className="modal" style={{background : props.backgroundColor}}>
+      <h4>{props.글제목[0]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
