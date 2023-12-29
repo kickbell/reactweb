@@ -12,6 +12,7 @@ function App() {
   let [modal, setModal] = useState(false);
   let [선택한인덱스, 선택한인덱스변경] = useState(0);
   let [입력값, 입력값변경] = useState('');
+  let [날짜, 날짜변경] = useState(['2016.06.12','2014.03.24','2022.11.11']);
 
   return (
     <div className="App">
@@ -60,7 +61,7 @@ function App() {
                 </span>
                 {따봉[index]}
                 </h4>
-              <p>2월 17일 발행</p>
+              <p>{ 날짜[index] }</p>
               <button onClick = {()=> {
                   let copy = [...글제목];
                   copy.splice(index,1)
@@ -76,10 +77,17 @@ function App() {
       <input type="text" onChange={(e)=>{입력값변경(e.target.value)}}/>
       <button onClick={(e)=>{
           if (입력값.trim() === '') return; // 가드문을 사용하여 빈 입력 처리
-
           let copy = [...글제목];
           copy.unshift(입력값)
           글제목변경(copy)
+
+          let 따봉copy = [...따봉];
+          따봉copy.push(0);
+          따봉변경(따봉copy);
+  
+          let 날짜copy = [...날짜];
+          날짜copy.push(new Date().toLocaleDateString());
+          날짜변경(날짜copy);
       }}>글발행
       </button>
 
