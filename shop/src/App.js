@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Navbar, Container, Nav, Row, Col } from 'react-bootstrap'
 import { useState } from 'react';
 import data from './data.js';
+import { Routes, Route, Link } from 'react-router-dom';
 
 function App() {
 
@@ -22,30 +23,50 @@ function App() {
         </Container>
       </Navbar>
 
-      <div className="main-bg"></div>
+      <Link to="/">홈</Link>
+      <Link to="/detail">상세페이지</Link>
 
-      <Container>
-        <Row>            
-          {
-            shoes.map((shoe, index)=>{
-              return (
-                <GridItem shoe={shoes[index]} idx={index} key={index}/>
-              )
-            })
-          }
-        </Row>
-      </Container>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <div className="main-bg"></div>
+            <Container>
+              <Row>
+                {
+                  shoes.map((shoe, index) => {
+                    return (
+                      <GridItem shoe={shoes[index]} idx={index} key={index} />
+                    )
+                  })
+                }
+              </Row>
+            </Container>
+          </>
+        } />
+        <Route path="/detail" element={<div>상세</div>} />
+      </Routes>
+
+
+
+
+
+
+
 
     </div>
   );
 }
 
-function GridItem(props){ 
+function Main() {
+
+}
+
+function GridItem(props) {
   return (
     <Col sm>
-    <img src={'https://codingapple1.github.io/shop/shoes'+ (props.idx+1) +'.jpg'} width="80%" />
-    <h4>{props.shoe.title}</h4>
-    <p>{props.shoe.price}</p>
+      <img src={'https://codingapple1.github.io/shop/shoes' + (props.idx + 1) + '.jpg'} width="80%" />
+      <h4>{props.shoe.title}</h4>
+      <p>{props.shoe.price}</p>
     </Col>
   )
 }
