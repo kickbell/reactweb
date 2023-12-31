@@ -7,7 +7,7 @@ import data from './data.js';
 
 function App() {
 
-  let [shoes, shoes변경] = useState(data)
+  let [shoes] = useState(data)
 
   return (
     <div className="App">
@@ -23,17 +23,16 @@ function App() {
       </Navbar>
 
       <div className="main-bg"></div>
-      <div>
-        <Container>
-          <Row>            
-            {
-              shoes.map(function(shoe, index) {
-                return <GridItem shoe={shoes[index]} key={index}/>
-              })
-            }
-          </Row>
-        </Container>
-      </div>
+
+      <Container>
+        <Row>            
+          {
+            shoes.map(function(shoe, index) {
+              return <GridItem shoe={shoes[index]} key={index}/>
+            })
+          }
+        </Row>
+      </Container>
 
     </div>
   );
@@ -42,7 +41,7 @@ function App() {
 function GridItem(props){ 
   return (
     <Col sm>
-    <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="80%" />
+    <img src={`https://codingapple1.github.io/shop/shoes${props.shoe.id+1}.jpg`} width="80%" alt={props.shoe.title} />
     <h4>{props.shoe.title}</h4>
     <p>{props.shoe.price}</p>
     </Col>
