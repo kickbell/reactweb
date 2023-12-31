@@ -7,8 +7,7 @@ import data from './data.js';
 
 function App() {
 
-  let [shoes] = useState(data)
-  console.log(shoes[0].price)
+  let [shoes, shoes변경] = useState(data)
 
   return (
     <div className="App">
@@ -26,28 +25,28 @@ function App() {
       <div className="main-bg"></div>
       <div>
         <Container>
-          <Row>
-            <Col sm>
-              <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="80%" />
-              <h4>{shoes[0].title}</h4>
-              <p>{shoes[0].price}</p>
-            </Col>
-            <Col sm>
-              <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="80%" />
-              <h4>상품명</h4>
-              <p>상품설명</p>
-            </Col>
-            <Col sm>
-              <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="80%" />
-              <h4>상품명</h4>
-              <p>상품설명</p>
-            </Col>
+          <Row>            
+            {
+              shoes.map(function(shoe, index) {
+                return <GridItem shoe={shoes[index]} key={index}/>
+              })
+            }
           </Row>
         </Container>
       </div>
 
     </div>
   );
+}
+
+function GridItem(props){ 
+  return (
+    <Col sm>
+    <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="80%" />
+    <h4>{props.shoe.title}</h4>
+    <p>{props.shoe.price}</p>
+    </Col>
+  )
 }
 
 export default App;
