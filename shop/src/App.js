@@ -1,10 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Container, Nav, Row } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import { useState } from 'react';
 import data from './data.js';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import Detail from './pages/Detail.js'
 import Card from './components/Card.js'
 import NavigationBar from './components/NavigationBar.js'
@@ -19,7 +19,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Main shoes={shoes} />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
         <Route path="*" element={<div>없는페이지</div>} />
 
         <Route path="/about" element={<About />}>
@@ -51,7 +51,7 @@ function Main(props) {
     <>
       <div className="main-bg"></div>
       <Container>
-        <Row>
+        <Row onClick={console.log(1)}>
           {
             props.shoes.map((shoe, index) => {
               return (
