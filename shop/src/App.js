@@ -40,9 +40,7 @@ function App() {
         axios.get('https://codingapple1.github.io/shop/data2.json')
           .then((result) => {
             console.log(result.data)
-            // let copy = [...shoes, ...result.data];
-            var copy = [...shoes];
-            copy = copy.concat(result.data);
+            let copy = [...shoes, ...result.data];
             setShoes(copy)
             //로딩중숨기기
           })
@@ -50,21 +48,6 @@ function App() {
             console.log(error)
             //로딩중숨기기
           })
-
-        
-        Promise.all([axios.get('url1'), axios.get('url2')])
-        .then(()=> {
-
-        })
-
-        //URLSession같은 내장기능
-        fetch('URL')
-        .then(결과 => 결과.json()) //JSON -> array/object 변환 
-        .then((결과) => { 
-          console.log(결과) 
-        } )
-
-
       }}>리퀘스트 요청</button>
 
 
