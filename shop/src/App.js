@@ -8,10 +8,11 @@ import { Routes, Route, Outlet } from 'react-router-dom';
 import Detail from './pages/Detail.js'
 import Card from './components/Card.js'
 import NavigationBar from './components/NavigationBar.js'
+import axios from 'axios'
 
 function App() {
 
-  let [shoes] = useState(data)
+  let [shoes, setShoes] = useState(data)
 
   return (
     <div className="App">
@@ -33,6 +34,43 @@ function App() {
         </Route>
       </Routes>
 
+
+      <button onClick={() => {
+        //로딩중보이기
+        axios.get('https://codingapple1.github.io/shop/data2.json')
+          .then((result) => {
+            console.log(result.data)
+            // let copy = [...shoes, ...result.data];
+            var copy = [...shoes];
+            copy = copy.concat(result.data);
+            setShoes(copy)
+            //로딩중숨기기
+          })
+          .catch((error) => {
+            console.log(error)
+            //로딩중숨기기
+          })
+
+        
+        Promise.all([axios.get('url1'), axios.get('url2')])
+        .then(()=> {
+
+        })
+
+        //URLSession같은 내장기능
+        fetch('URL')
+        .then(결과 => 결과.json()) //JSON -> array/object 변환 
+        .then((결과) => { 
+          console.log(결과) 
+        } )
+
+
+      }}>리퀘스트 요청</button>
+
+
+
+
+
     </div>
   );
 }
@@ -51,7 +89,7 @@ function Main(props) {
     <>
       <div className="main-bg"></div>
       <Container>
-        <Row onClick={console.log(1)}>
+        <Row>
           {
             props.shoes.map((shoe, index) => {
               return (
