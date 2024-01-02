@@ -11,8 +11,8 @@ import NavigationBar from './components/NavigationBar.js'
 import axios from 'axios'
 
 function App() {
-
   let [shoes, setShoes] = useState(data)
+  let [clickCount, setClickCount] = useState(0);
 
   return (
     <div className="App">
@@ -36,8 +36,20 @@ function App() {
 
 
       <button onClick={() => {
-        //로딩중보이기
-        axios.get('https://codingapple1.github.io/shop/data2.json')
+        setClickCount(clickCount + 1)
+        let url = '';
+        if (clickCount === 1) {
+          url = 'https://codingapple1.github.io/shop/data3.json';
+        } else if (clickCount > 1) {
+          // 더 이상 상품이 없음을 처리
+          alert('더 이상 상품이 없습니다.');
+          return;
+        } else {
+          url = 'https://codingapple1.github.io/shop/data2.json';
+        }
+
+
+        axios.get(url)
           .then((result) => {
             console.log(result.data)
             let copy = [...shoes, ...result.data];
