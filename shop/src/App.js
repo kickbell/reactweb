@@ -9,10 +9,12 @@ import Detail from './pages/Detail.js'
 import Card from './components/Card.js'
 import NavigationBar from './components/NavigationBar.js'
 import axios from 'axios'
+import LoadingSpinner from './components/LoadingSpinner.js';
 
 function App() {
   let [shoes, setShoes] = useState(data)
   let [clickCount, setClickCount] = useState(0);
+  let [loading, setLoading] = useState(false);
 
   return (
     <div className="App">
@@ -34,37 +36,34 @@ function App() {
         </Route>
       </Routes>
 
+      {loading && <LoadingSpinner />}
 
       <button onClick={() => {
+        setLoading(true)
         setClickCount(clickCount + 1)
+
         let url = '';
         if (clickCount === 1) {
           url = 'https://codingapple1.github.io/shop/data3.json';
         } else if (clickCount > 1) {
-          // 더 이상 상품이 없음을 처리
           alert('더 이상 상품이 없습니다.');
           return;
         } else {
           url = 'https://codingapple1.github.io/shop/data2.json';
         }
 
-
         axios.get(url)
           .then((result) => {
             console.log(result.data)
             let copy = [...shoes, ...result.data];
             setShoes(copy)
-            //로딩중숨기기
+            setLoading(false)
           })
           .catch((error) => {
-            console.log(error)
-            //로딩중숨기기
+            alert(error.response.data.message)
+            setLoading(false)
           })
       }}>리퀘스트 요청</button>
-
-
-
-
 
     </div>
   );
