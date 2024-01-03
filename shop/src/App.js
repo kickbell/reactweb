@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row } from 'react-bootstrap'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import data from './data.js';
 import { Routes, Route, Outlet } from 'react-router-dom';
 import Detail from './pages/Detail.js'
@@ -35,17 +35,6 @@ function App() {
           <Route path="two" element={<div>생일기념 쿠폰받기</div>} />
         </Route>
       </Routes>
-
-
-
-
-
-
-
-
-
-
-
 
     </div>
   );

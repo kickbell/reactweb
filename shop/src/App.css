@@ -1,12 +1,12 @@
 .start {
-  transform: scale(0);
+  /* transform: scale(0); */
   opacity: 0;
 }
 
 .end {
-  transform: scale(1);
+  /* transform: scale(1); */
   opacity: 1;
-  transition: opacity 2s;
+  transition: opacity 0.5s;
 }
 
 .main-bg {
