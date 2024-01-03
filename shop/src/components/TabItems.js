@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 
 function TabItems() {
@@ -8,13 +8,13 @@ function TabItems() {
     <>
       <Nav variant="tabs" defaultActiveKey="link0">
         <Nav.Item>
-          <Nav.Link onClick={()=>{ setSelectedIdx(0)}}eventKey="link0">Option 1</Nav.Link>
+          <Nav.Link onClick={() => { setSelectedIdx(0) }} eventKey="link0">Option 1</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link onClick={()=>{ setSelectedIdx(1)}} eventKey="link1">Option 2</Nav.Link>
+          <Nav.Link onClick={() => { setSelectedIdx(1) }} eventKey="link1">Option 2</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link onClick={()=>{ setSelectedIdx(2)}} eventKey="link2">Option 3</Nav.Link>
+          <Nav.Link onClick={() => { setSelectedIdx(2) }} eventKey="link2">Option 3</Nav.Link>
         </Nav.Item>
       </Nav>
 
@@ -25,7 +25,7 @@ function TabItems() {
   );
 }
 
-function TapContent({selectedIdx}) {
+function TapContent({ selectedIdx }) {
   // if (탭 == 0) {
   //   return <div>내용 0</div>
   // } else if (탭 == 1) {
@@ -34,7 +34,21 @@ function TapContent({selectedIdx}) {
   //   return <div>내용 2</div>
   // }
 
-  return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][selectedIdx]
+  let [fade, setFade] = useState('')
+
+  useEffect(() => {
+    let timer = setTimeout(() => { setFade('end') }, 100);
+    return () => {
+      clearTimeout(timer)
+      setFade('')
+    }
+  }, [selectedIdx])
+
+  return (
+    <div className={'start ' + fade}>
+      {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][selectedIdx]}
+    </div>
+  )
 }
 
 
