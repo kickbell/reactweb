@@ -21,7 +21,7 @@ function App() {
       <NavigationBar />
 
       <Routes>
-        <Route path="/" element={<Main shoes={shoes} />} />
+        <Route path="/" element={<Main shoes={shoes} clickCount={clickCount} loading={loading}/>} />
         <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
         <Route path="*" element={<div>없는페이지</div>} />
 
@@ -36,34 +36,16 @@ function App() {
         </Route>
       </Routes>
 
-      {loading && <LoadingSpinner />}
 
-      <button onClick={() => {
-        setLoading(true)
-        setClickCount(clickCount + 1)
 
-        let url = '';
-        if (clickCount === 1) {
-          url = 'https://codingapple1.github.io/shop/data3.json';
-        } else if (clickCount > 1) {
-          alert('더 이상 상품이 없습니다.');
-          return;
-        } else {
-          url = 'https://codingapple1.github.io/shop/data2.json';
-        }
 
-        axios.get(url)
-          .then((result) => {
-            console.log(result.data)
-            let copy = [...shoes, ...result.data];
-            setShoes(copy)
-            setLoading(false)
-          })
-          .catch((error) => {
-            alert(error.response.data.message)
-            setLoading(false)
-          })
-      }}>리퀘스트 요청</button>
+
+
+
+
+
+
+
 
     </div>
   );
@@ -93,6 +75,37 @@ function Main(props) {
           }
         </Row>
       </Container>
+
+
+      {props.loading && <LoadingSpinner />}
+
+      <button onClick={() => {
+        props.setLoading(true)
+        props.setClickCount(props.clickCount + 1)
+
+        let url = '';
+        if (props.clickCount === 1) {
+          url = 'https://codingapple1.github.io/shop/data3.json';
+        } else if (props.clickCount > 1) {
+          alert('더 이상 상품이 없습니다.');
+          return;
+        } else {
+          url = 'https://codingapple1.github.io/shop/data2.json';
+        }
+
+        axios.get(url)
+          .then((result) => {
+            console.log(result.data)
+            let copy = [...props.shoes, ...result.data];
+            props.setShoes(copy)
+            props.setLoading(false)
+          })
+          .catch((error) => {
+            alert(error.response.data.message)
+            props.setLoading(false)
+          })
+      }}>리퀘스트 요청</button>
+
     </>
   )
 }
@@ -105,5 +118,6 @@ function Event() {
     </div>
   )
 }
+
 
 export default App;

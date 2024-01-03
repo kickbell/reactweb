@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import TabItems from "../components/TabItems";
 
 function Detail(props) {
 
@@ -32,7 +33,15 @@ function Detail(props) {
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
+
+      <TabItems></TabItems>
+
+
     </div>
+
+
+    
+
   )
 }
 
