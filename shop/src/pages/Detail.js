@@ -8,6 +8,14 @@ function Detail(props) {
   let 찾은상품 = props.shoes.find((x) => x.id == id)
   let [count, setcount] = useState(0)
   let [alert, setalert] = useState(false)
+  let [fade2, setFade2] = useState('')
+
+  useEffect(() => {
+    setFade2('end')
+    return () => {
+      setFade2('')
+    }
+  }, [])
 
   useEffect(() => {
     let a = setTimeout(() => { setalert(!alert) }, 2000)
@@ -17,7 +25,7 @@ function Detail(props) {
   }, [])
 
   return (
-    <div className="container">
+    <div className={'container start ' + fade2}>
       {
         alert == true ? <div>2초이내 구매시 할인</div> : null
       }
@@ -40,7 +48,7 @@ function Detail(props) {
     </div>
 
 
-    
+
 
   )
 }
