@@ -8,11 +8,9 @@ let cart = createSlice({
             { id: 12, name: '아디다스', count: 1 },
         ],
     reducers: {
-        increase(state, action) {
-            let item = state.find(item => item.id === action.payload);
-            if (item) {
-                item.count += 1;
-            }
+        addCount(state, action) {
+            let index = state.findIndex(item => item.id === action.payload);
+            state[index].count ++
         },
         addItem(state, action) {
             let item = state.find(item => item.id === action.payload.id);
@@ -32,6 +30,6 @@ let cart = createSlice({
         },
     }
 })
-export let { increase, addItem } = cart.actions
+export let { addCount, addItem } = cart.actions
 
 export default cart
