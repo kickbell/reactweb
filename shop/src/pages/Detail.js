@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import TabItems from "../components/TabItems";
+import { addItem } from "../\bstore/cartSlice";
+import { useDispatch } from "react-redux";
 
 function Detail(props) {
 
@@ -9,6 +11,9 @@ function Detail(props) {
   let [count, setcount] = useState(0)
   let [alert, setalert] = useState(false)
   let [fade2, setFade2] = useState('')
+
+  let dispatch = useDispatch()
+  let navigate = useNavigate()
 
   useEffect(() => {
     setFade2('end')
@@ -37,7 +42,11 @@ function Detail(props) {
           <h4 className="pt-5">{찾은상품.title}</h4>
           <p>{찾은상품.content}</p>
           <p>{찾은상품.price}원</p>
-          <button className="btn btn-danger">주문하기</button>
+          <button className="btn btn-danger" onClick={() => {
+            console.log(찾은상품)
+            dispatch(addItem(찾은상품));
+            navigate('/cart');
+          }}>주문하기</button>
         </div>
       </div>
 
