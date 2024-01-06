@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 
-function TabItems() {
+function TabItems(props) {
   let [selectedIdx, setSelectedIdx] = useState(0)
 
   return (
@@ -20,12 +20,12 @@ function TabItems() {
 
       {/* { 탭 == 0 ? <div>내용 0</div> : 탭 == 1 ? <div>내용 1</div> : <div>내용 2</div> } */}
 
-      <TapContent selectedIdx={selectedIdx}></TapContent>
+      <TapContent shoes={props.shoes} selectedIdx={selectedIdx}></TapContent>
     </>
   );
 }
 
-function TapContent({ selectedIdx }) {
+function TapContent({ selectedIdx, shoes }) {
   // if (탭 == 0) {
   //   return <div>내용 0</div>
   // } else if (탭 == 1) {
@@ -33,8 +33,10 @@ function TapContent({ selectedIdx }) {
   // } else if (탭 == 2) {
   //   return <div>내용 2</div>
   // }
-
   let [fade, setFade] = useState('')
+
+  // console.log("TapContent..")
+  // console.log(shoes)
 
   useEffect(() => {
     let timer = setTimeout(() => { setFade('end') }, 100);
@@ -46,7 +48,7 @@ function TapContent({ selectedIdx }) {
 
   return (
     <div className={'start ' + fade}>
-      {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][selectedIdx]}
+      {[<div>{shoes[0].title}</div>, <div>{shoes[1].title}</div>, <div>{shoes[2].title}</div>][selectedIdx]}
     </div>
   )
 }

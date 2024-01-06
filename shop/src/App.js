@@ -2,14 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row } from 'react-bootstrap'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import data from './data.js';
 import { Routes, Route, Outlet } from 'react-router-dom';
 import Detail from './pages/Detail.js'
 import Card from './components/Card.js'
+import Cart from './components/Cart.js'
 import NavigationBar from './components/NavigationBar.js'
 import axios from 'axios'
 import LoadingSpinner from './components/LoadingSpinner.js';
+
 
 function App() {
   let [shoes, setShoes] = useState(data)
@@ -21,9 +23,11 @@ function App() {
       <NavigationBar />
 
       <Routes>
-        <Route path="/" element={<Main shoes={shoes} clickCount={clickCount} loading={loading}/>} />
+        <Route path="/" element={<Main shoes={shoes} clickCount={clickCount} loading={loading} />} />
         <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
         <Route path="*" element={<div>없는페이지</div>} />
+
+        <Route path="/cart" element={ <Cart/> } /> 
 
         <Route path="/about" element={<About />}>
           <Route path="member" element={<div>멤버임</div>} />

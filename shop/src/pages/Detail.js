@@ -29,7 +29,6 @@ function Detail(props) {
       {
         alert == true ? <div>2초이내 구매시 할인</div> : null
       }
-
       <div className="row">
         <div className="col-md-6">
           <img src={'https://codingapple1.github.io/shop/shoes' + id + '.jpg'} width="100%" />
@@ -42,14 +41,8 @@ function Detail(props) {
         </div>
       </div>
 
-      <TabItems></TabItems>
-
-
+      <TabItems shoes={props.shoes}></TabItems>
     </div>
-
-
-
-
   )
 }
 
