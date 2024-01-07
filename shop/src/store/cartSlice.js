@@ -10,7 +10,7 @@ let cart = createSlice({
     reducers: {
         addCount(state, action) {
             let index = state.findIndex(item => item.id === action.payload);
-            state[index].count ++
+            state[index].count++
         },
         addItem(state, action) {
             let item = state.find(item => item.id === action.payload.id);
