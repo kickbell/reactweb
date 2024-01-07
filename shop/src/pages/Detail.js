@@ -36,7 +36,7 @@ function Detail(props) {
 		let data = localStorage.getItem('watched')
 	  data = JSON.parse(data)
 	  data.push(찾은상품.id)
-	  data = new Set(꺼낸거) //Set으로 변경
+	  data = new Set(data) //Set으로 변경
 	  data = Array.from(data) //Array로 변경
 	  localStorage.setItem('watched', JSON.stringify(data))
   }, [])
