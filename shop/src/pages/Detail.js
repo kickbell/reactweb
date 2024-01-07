@@ -33,11 +33,12 @@ function Detail(props) {
   }, [])
 
   useEffect(() => {
-    let data = localStorage.getItem('watched')
-    data = JSON.parse(data)
-    data.push(찾은상품.id)
-    localStorage.setItem('watched', JSON.stringify(data))
-    console.log(data)
+		let data = localStorage.getItem('watched')
+	  data = JSON.parse(data)
+	  data.push(찾은상품.id)
+	  data = new Set(꺼낸거) //Set으로 변경
+	  data = Array.from(data) //Array로 변경
+	  localStorage.setItem('watched', JSON.stringify(data))
   }, [])
 
   return (
