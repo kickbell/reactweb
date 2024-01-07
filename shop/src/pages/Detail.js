@@ -15,6 +15,9 @@ function Detail(props) {
   let dispatch = useDispatch()
   let navigate = useNavigate()
 
+  useEffect(()=>{ console.log('sss') }, [ ])
+
+
   useEffect(() => {
     setFade2('end')
     return () => {
@@ -27,6 +30,14 @@ function Detail(props) {
     return () => {
       clearTimeout(a)
     }
+  }, [])
+
+  useEffect(() => {
+    let data = localStorage.getItem('watched')
+    data = JSON.parse(data)
+    data.push(찾은상품.id)
+    localStorage.setItem('watched', JSON.stringify(data))
+    console.log(data)
   }, [])
 
   return (
@@ -43,7 +54,6 @@ function Detail(props) {
           <p>{찾은상품.content}</p>
           <p>{찾은상품.price}원</p>
           <button className="btn btn-danger" onClick={() => {
-            console.log(찾은상품)
             dispatch(addItem(찾은상품));
             navigate('/cart');
           }}>주문하기</button>
