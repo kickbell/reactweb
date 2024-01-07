@@ -4,7 +4,14 @@ import TabItems from "../components/TabItems";
 import { addItem } from "../\bstore/cartSlice";
 import { useDispatch } from "react-redux";
 
+// var a = 0 
+
 function Detail(props) {
+
+  // for(var i = 0; i < 1e9; i++) { // 1억번 반복 
+  //   a = i;
+  // }
+
 
   let { id } = useParams()
   let 찾은상품 = props.shoes.find((x) => x.id == id)
