@@ -11,9 +11,15 @@ import Cart from './components/Cart.js'
 import NavigationBar from './components/NavigationBar.js'
 import axios from 'axios'
 import LoadingSpinner from './components/LoadingSpinner.js';
+// import { useQuery } from '@tanstack/react-query';
 
 
 function App() {
+
+  // let result = useQuery('작명', ()=>
+  //   axios.get('https://codingapple1.github.io/userdata.json')
+  //   .then((a)=>{ return a.data })
+  // )
 
   //최근 본 상품기능
   useEffect(()=>{
