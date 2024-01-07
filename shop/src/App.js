@@ -17,7 +17,13 @@ function App() {
 
   //최근 본 상품기능
   useEffect(()=>{
-    localStorage.setItem('watched', JSON.stringify([]))
+    // if (localStorage.getItem('watched').length === 0) {
+    //   localStorage.setItem('watched', JSON.stringify([]))  
+    // }
+
+    if (localStorage.getItem('watched') === null) {
+      localStorage.setItem('watched', JSON.stringify([]));
+    }
   },[])
 
   let [shoes, setShoes] = useState(data)
