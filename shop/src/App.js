@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row } from 'react-bootstrap'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import data from './data.js';
 import { Routes, Route, Outlet } from 'react-router-dom';
 import Detail from './pages/Detail.js'
@@ -14,6 +14,12 @@ import LoadingSpinner from './components/LoadingSpinner.js';
 
 
 function App() {
+
+  //최근 본 상품기능
+  useEffect(()=>{
+    localStorage.setItem('watched', JSON.stringify([]))
+  },[])
+
   let [shoes, setShoes] = useState(data)
   let [clickCount, setClickCount] = useState(0);
   let [loading, setLoading] = useState(false);
