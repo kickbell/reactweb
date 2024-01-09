@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { changeName, increase } from '../store';
 // import { changeName, increase } from '../\bstore/userSlice';
 import { addCount } from '../\bstore/cartSlice';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 
-function HeavyChild() {
+let HeavyChild = memo( function(){
     console.log('재렌더링됨')
     return <div>자식임</div>
-}
+})
+
+// props가 변할때만 재랜더링
+
 
 function Cart() {
     let cart = useSelector((state) => state.cart)
@@ -20,7 +23,7 @@ function Cart() {
 
     return (
         <Table>
-            <HeavyChild></HeavyChild>
+            <HeavyChild count={count}></HeavyChild>
             <button onClick={()=>{ setCount(count+1)}}>+</button>
             {/* <h6>{state.user.name}, {state.user.age}의 장바구니</h6>
             <button onClick={()=>{
